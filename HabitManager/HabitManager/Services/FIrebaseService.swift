@@ -11,85 +11,53 @@ import FirebaseFirestoreSwift
 import Combine
 
 class FirebaseService {
-    static let shared = FirebaseService()
+    let db = Firestore.firestore()
     
-    private let db = Firestore.firestore()
+    func createHabit(habit: Habit) {
+        do {
+            let _ = try db.collection("habits").addDocument(from: habit)
+        } catch {
+            print("There was an error while trying to save a habit: \(error.localizedDescription)")
+        }
+    }
     
-    func fetchHabits() -> AnyPublisher<[Habit], Error> {
+    func fetchHabits(userId: String) -> AnyPublisher<[Habit], Error> {
         return Future<[Habit], Error> { promise in
-            self.db.collection("habits").addSnapshotListener { (querySnapshot, error) in
+            let habits = self.db.collection("habits").whereField("userId", isEqualTo: userId)
+            habits.addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
                     promise(.failure(error))
                 } else {
-                    do {
-                        let habits = try querySnapshot?.documents.compactMap { document -> Habit? in
-                            try document.data(as: Habit.self)
-                        } ?? []
-                        promise(.success(habits))
-                    } catch {
-                        promise(.failure(error))
-                    }
+                    let habits = querySnapshot?.documents.compactMap { document -> Habit? in
+                        try? document.data(as: Habit.self)
+                    } ?? []
+                    promise(.success(habits))
                 }
             }
         }.eraseToAnyPublisher()
     }
     
-    func addHabit(_ habit: Habit) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
+    func updateHabit(habit: Habit) {
+        if let habitId = habit.id {
             do {
-                _ = try self.db.collection("habits").addDocument(from: habit) { error in
-                    if let error = error {
-                        promise(.failure(error))
-                    } else {
-                        promise(.success(()))
-                    }
-                }
+                try db.collection("habits").document(habitId).setData(from: habit)
             } catch {
-                promise(.failure(error))
+                print("There was an error while trying to update a habit: \(error.localizedDescription)")
             }
-        }.eraseToAnyPublisher()
+        }
     }
     
-    func updateHabit(_ habit: Habit) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
-            do {
-                guard let id = habit.id else {
-                    promise(.failure(FirebaseError.missingDocumentID))
-                    return
+    func deleteHabit(habit: Habit) {
+        if let habitId = habit.id {
+            db.collection("habits").document(habitId).delete { error in
+                if let error = error {
+                    print("There was an error while trying to delete a habit: \(error.localizedDescription)")
                 }
-                _ = try self.db.collection("habits").document(id).setData(from: habit) { error in
-                    if let error = error {
-                        promise(.failure(error))
-                    } else {
-                        promise(.success(()))
-                    }
-                }
-            } catch {
-                promise(.failure(error))
             }
-        }.eraseToAnyPublisher()
-    }
-    
-    func deleteHabit(_ habit: Habit) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
-            do {
-                guard let id = habit.id else {
-                    promise(.failure(FirebaseError.missingDocumentID))
-                    return
-                }
-                self.db.collection("habits").document(id).delete { error in
-                    if let error = error {
-                        promise(.failure(error))
-                    } else {
-                        promise(.success(()))
-                    }
-                }
-            } catch {
-                promise(.failure(error))
-            }
-        }.eraseToAnyPublisher()
+        }
     }
 }
+
             
 
 

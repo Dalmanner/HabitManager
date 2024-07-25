@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE0CE3572C52C5F300C3D779 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0CE3562C52C5F300C3D779 /* GoogleService-Info.plist */; };
+		CE0CE3592C52C75400C3D779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CE3582C52C75400C3D779 /* AppDelegate.swift */; };
 		CE414DB52C24BAEE00ACD9CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DB42C24BAEE00ACD9CF /* FirebaseAuth */; };
 		CE414DBB2C24BAEE00ACD9CF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DBA2C24BAEE00ACD9CF /* FirebaseFirestore */; };
 		CE414DBF2C24BAEE00ACD9CF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DBE2C24BAEE00ACD9CF /* FirebaseFirestoreSwift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE0CE3562C52C5F300C3D779 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "HabitManager/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE0CE3582C52C75400C3D779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4886C22C24B5A100FC398E /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		CE4886C42C24B5B500FC398E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE4886C62C24B5EA00FC398E /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		CECF45052C1FF0B3000DB293 = {
 			isa = PBXGroup;
 			children = (
+				CE0CE3562C52C5F300C3D779 /* GoogleService-Info.plist */,
 				CECF45102C1FF0B3000DB293 /* HabitManager */,
 				CECF45262C1FF0B5000DB293 /* HabitManagerTests */,
 				CECF45302C1FF0B5000DB293 /* HabitManagerUITests */,
@@ -171,6 +176,7 @@
 				CECF451A2C1FF0B5000DB293 /* Persistence.swift */,
 				CECF451C2C1FF0B5000DB293 /* HabitManager.xcdatamodeld */,
 				CECF45172C1FF0B5000DB293 /* Preview Content */,
+				CE0CE3582C52C75400C3D779 /* AppDelegate.swift */,
 			);
 			path = HabitManager;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 			files = (
 				CECF45192C1FF0B5000DB293 /* Preview Assets.xcassets in Resources */,
 				CECF45162C1FF0B5000DB293 /* Assets.xcassets in Resources */,
+				CE0CE3572C52C5F300C3D779 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0CE3592C52C75400C3D779 /* AppDelegate.swift in Sources */,
 				CECF451E2C1FF0B5000DB293 /* HabitManager.xcdatamodeld in Sources */,
 				CECF451B2C1FF0B5000DB293 /* Persistence.swift in Sources */,
 				CE4886C92C24B60A00FC398E /* HabitViewModel.swift in Sources */,
