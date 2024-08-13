@@ -5,16 +5,22 @@
 //  Created by Mac on 2024-06-23.
 //
 
-/*import SwiftUI
+import SwiftUI
 
 struct TopBar: View {
     var body: some View {
         HStack {
             Spacer()
-            Image("logo")
+            Text("Habit")
+                .font(.headline)
+                .fontWeight(.bold)
+            Image("schedule")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 30)
+            Text("Manager")
+                .font(.headline)
+                .fontWeight(.bold)
             Spacer()
         }
         .padding()
@@ -24,4 +30,4 @@ struct TopBar: View {
 
 #Preview {
     TopBar()
-}*/
+}

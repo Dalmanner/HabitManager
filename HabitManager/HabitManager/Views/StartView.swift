@@ -7,65 +7,68 @@
 
 import SwiftUI
 
-
 struct StartView: View {
+    @EnvironmentObject var appViewModel: AppViewModel
+
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Text("Keep track!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 5)
-            
-            Text("Manage your habits easily!")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .padding(.bottom, 20)
-            
-            VStack(spacing: 16) {
-                Button(action: {
-                    // Action for sign in
-                    
-                }) {
-                    Text("Sign In")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
+        ZStack(alignment: .top) {
+            VStack(spacing: 0) {
+                TopBar()
+                Spacer().frame(height: 20)
+                NavigationStack {
+                    VStack {
+                        
+                        Text("Welcome to")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+
+                        Text("Habit Manager!")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.bottom, 20)
+                        
+                        Text("Create an account or sign in to get started")
+                            .padding()
+                        
+                        HStack {
+                            NavigationLink(destination: LoginView(appViewModel: appViewModel)) {
+                                Text("Sign In")
+                                    .font(.headline)
+                                    .padding()
+                                    .background(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                            
+                            NavigationLink(destination: CreateAccountView().environmentObject(appViewModel)) {
+                                Text("Create Account")
+                                    .font(.headline)
+                                    .padding()
+                                    .background(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                        }
                         .padding()
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                
-                Button(action: {
-                    // Action for create account
-                }) {
-                    Text("Create account")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.black, lineWidth: 2)
-                        )
+                    }
                 }
             }
-            .padding(.horizontal, 24)
-            
-            Spacer()
         }
-        .padding()
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+extension View {
+    func dismissKeyboardOnTap() -> some View {
+        self.onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+    }
+}
+
+// Preview:
+struct StartView_Previews: PreviewProvider {
     static var previews: some View {
         StartView()
+            .environmentObject(AppViewModel())
     }
 }
-
-
-
-

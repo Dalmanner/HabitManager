@@ -10,7 +10,12 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
 
-class FirebaseService {
+class FirebaseService: ObservableObject {
+    
+    @Published var selectedHabit: Habit?
+    @Published var user: User?
+    @Published var habits = [Habit]()
+    
     let db = Firestore.firestore()
     
     func createHabit(habit: Habit) {

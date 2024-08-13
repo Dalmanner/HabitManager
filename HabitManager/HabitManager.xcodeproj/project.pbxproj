@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CE0CE3572C52C5F300C3D779 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0CE3562C52C5F300C3D779 /* GoogleService-Info.plist */; };
-		CE0CE3592C52C75400C3D779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0CE3582C52C75400C3D779 /* AppDelegate.swift */; };
+		CE2DE5932C6B9EE7008DE8FB /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5922C6B9EE7008DE8FB /* EditHabitView.swift */; };
+		CE2DE5952C6BA206008DE8FB /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5942C6BA206008DE8FB /* HabitRowView.swift */; };
+		CE2DE5972C6BA7E8008DE8FB /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5962C6BA7E8008DE8FB /* AppViewModel.swift */; };
 		CE414DB52C24BAEE00ACD9CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DB42C24BAEE00ACD9CF /* FirebaseAuth */; };
 		CE414DBB2C24BAEE00ACD9CF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DBA2C24BAEE00ACD9CF /* FirebaseFirestore */; };
 		CE414DBF2C24BAEE00ACD9CF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DBE2C24BAEE00ACD9CF /* FirebaseFirestoreSwift */; };
@@ -19,6 +21,9 @@
 		CE4886CB2C24B61C00FC398E /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4886CA2C24B61C00FC398E /* Habit.swift */; };
 		CE4886CD2C24B63C00FC398E /* FIrebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4886CC2C24B63C00FC398E /* FIrebaseService.swift */; };
 		CE5FAE9C2C2896C50063F30A /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FAE9B2C2896C50063F30A /* TopBar.swift */; };
+		CE9EDD462C6A5A4E003FB401 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EDD452C6A5A4E003FB401 /* UserViewModel.swift */; };
+		CE9EDD482C6A5A67003FB401 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9EDD472C6A5A67003FB401 /* User.swift */; };
+		CE9F7E502C6A145A00C46550 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F7E4F2C6A145A00C46550 /* CreateAccountView.swift */; };
 		CEBC6FA32C24BECC003873C9 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBC6FA22C24BECC003873C9 /* AddHabitView.swift */; };
 		CECF45122C1FF0B3000DB293 /* HabitManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF45112C1FF0B3000DB293 /* HabitManagerApp.swift */; };
 		CECF45162C1FF0B5000DB293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CECF45152C1FF0B5000DB293 /* Assets.xcassets */; };
@@ -49,7 +54,9 @@
 
 /* Begin PBXFileReference section */
 		CE0CE3562C52C5F300C3D779 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "HabitManager/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CE0CE3582C52C75400C3D779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CE2DE5922C6B9EE7008DE8FB /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
+		CE2DE5942C6BA206008DE8FB /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
+		CE2DE5962C6BA7E8008DE8FB /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		CE4886C22C24B5A100FC398E /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		CE4886C42C24B5B500FC398E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE4886C62C24B5EA00FC398E /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
@@ -57,6 +64,9 @@
 		CE4886CA2C24B61C00FC398E /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		CE4886CC2C24B63C00FC398E /* FIrebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIrebaseService.swift; sourceTree = "<group>"; };
 		CE5FAE9B2C2896C50063F30A /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
+		CE9EDD452C6A5A4E003FB401 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		CE9EDD472C6A5A67003FB401 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CE9F7E4F2C6A145A00C46550 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		CEBC6FA22C24BECC003873C9 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		CECF450E2C1FF0B3000DB293 /* HabitManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECF45112C1FF0B3000DB293 /* HabitManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitManagerApp.swift; sourceTree = "<group>"; };
@@ -103,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4886CA2C24B61C00FC398E /* Habit.swift */,
+				CE9EDD472C6A5A67003FB401 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				CE4886C82C24B60A00FC398E /* HabitViewModel.swift */,
+				CE9EDD452C6A5A4E003FB401 /* UserViewModel.swift */,
+				CE2DE5962C6BA7E8008DE8FB /* AppViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -120,9 +133,12 @@
 			children = (
 				CE4886C22C24B5A100FC398E /* StartView.swift */,
 				CE4886C42C24B5B500FC398E /* LoginView.swift */,
+				CE9F7E4F2C6A145A00C46550 /* CreateAccountView.swift */,
 				CE4886C62C24B5EA00FC398E /* HabitListView.swift */,
 				CEBC6FA22C24BECC003873C9 /* AddHabitView.swift */,
+				CE2DE5922C6B9EE7008DE8FB /* EditHabitView.swift */,
 				CE5FAE9B2C2896C50063F30A /* TopBar.swift */,
+				CE2DE5942C6BA206008DE8FB /* HabitRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,7 +192,6 @@
 				CECF451A2C1FF0B5000DB293 /* Persistence.swift */,
 				CECF451C2C1FF0B5000DB293 /* HabitManager.xcdatamodeld */,
 				CECF45172C1FF0B5000DB293 /* Preview Content */,
-				CE0CE3582C52C75400C3D779 /* AppDelegate.swift */,
 			);
 			path = HabitManager;
 			sourceTree = "<group>";
@@ -345,12 +360,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0CE3592C52C75400C3D779 /* AppDelegate.swift in Sources */,
 				CECF451E2C1FF0B5000DB293 /* HabitManager.xcdatamodeld in Sources */,
 				CECF451B2C1FF0B5000DB293 /* Persistence.swift in Sources */,
 				CE4886C92C24B60A00FC398E /* HabitViewModel.swift in Sources */,
 				CE4886CD2C24B63C00FC398E /* FIrebaseService.swift in Sources */,
+				CE9EDD462C6A5A4E003FB401 /* UserViewModel.swift in Sources */,
 				CE5FAE9C2C2896C50063F30A /* TopBar.swift in Sources */,
+				CE9F7E502C6A145A00C46550 /* CreateAccountView.swift in Sources */,
+				CE2DE5972C6BA7E8008DE8FB /* AppViewModel.swift in Sources */,
+				CE9EDD482C6A5A67003FB401 /* User.swift in Sources */,
+				CE2DE5952C6BA206008DE8FB /* HabitRowView.swift in Sources */,
+				CE2DE5932C6B9EE7008DE8FB /* EditHabitView.swift in Sources */,
 				CECF45122C1FF0B3000DB293 /* HabitManagerApp.swift in Sources */,
 				CE4886C72C24B5EA00FC398E /* HabitListView.swift in Sources */,
 				CE4886C52C24B5B500FC398E /* LoginView.swift in Sources */,
@@ -445,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -502,7 +522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
