@@ -13,7 +13,7 @@ import FirebaseAuth
 final class HabitViewModel: ObservableObject {
     @Published var habits: [Habit] = [] {
         didSet {
-            print("Habits updated in ViewModel: \(habits.count)")
+            print("Habits updated in ViewModel: \(habits.count) habits")
         }
     }
 
@@ -83,4 +83,3 @@ final class HabitViewModel: ObservableObject {
         }
     }
 }
-

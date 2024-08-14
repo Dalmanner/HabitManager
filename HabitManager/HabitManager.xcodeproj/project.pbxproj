@@ -11,6 +11,7 @@
 		CE2DE5932C6B9EE7008DE8FB /* EditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5922C6B9EE7008DE8FB /* EditHabitView.swift */; };
 		CE2DE5952C6BA206008DE8FB /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5942C6BA206008DE8FB /* HabitRowView.swift */; };
 		CE2DE5972C6BA7E8008DE8FB /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5962C6BA7E8008DE8FB /* AppViewModel.swift */; };
+		CE2DE5992C6BB418008DE8FB /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DE5982C6BB418008DE8FB /* NotificationManager.swift */; };
 		CE414DB52C24BAEE00ACD9CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DB42C24BAEE00ACD9CF /* FirebaseAuth */; };
 		CE414DBB2C24BAEE00ACD9CF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DBA2C24BAEE00ACD9CF /* FirebaseFirestore */; };
 		CE414DBF2C24BAEE00ACD9CF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CE414DBE2C24BAEE00ACD9CF /* FirebaseFirestoreSwift */; };
@@ -33,6 +34,9 @@
 		CECF45282C1FF0B5000DB293 /* HabitManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF45272C1FF0B5000DB293 /* HabitManagerTests.swift */; };
 		CECF45322C1FF0B5000DB293 /* HabitManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF45312C1FF0B5000DB293 /* HabitManagerUITests.swift */; };
 		CECF45342C1FF0B5000DB293 /* HabitManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF45332C1FF0B5000DB293 /* HabitManagerUITestsLaunchTests.swift */; };
+		CECF95982C6CE0D0005610AB /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF95972C6CE0D0005610AB /* HabitCardView.swift */; };
+		CECF959B2C6CE99B005610AB /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF959A2C6CE99B005610AB /* Delete.swift */; };
+		CECF959D2C6CEA29005610AB /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF959C2C6CEA29005610AB /* RoundedCorner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,7 @@
 		CE2DE5922C6B9EE7008DE8FB /* EditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitView.swift; sourceTree = "<group>"; };
 		CE2DE5942C6BA206008DE8FB /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		CE2DE5962C6BA7E8008DE8FB /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		CE2DE5982C6BB418008DE8FB /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		CE4886C22C24B5A100FC398E /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		CE4886C42C24B5B500FC398E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE4886C62C24B5EA00FC398E /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
@@ -79,6 +84,9 @@
 		CECF452D2C1FF0B5000DB293 /* HabitManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECF45312C1FF0B5000DB293 /* HabitManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitManagerUITests.swift; sourceTree = "<group>"; };
 		CECF45332C1FF0B5000DB293 /* HabitManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CECF95972C6CE0D0005610AB /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
+		CECF959A2C6CE99B005610AB /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
+		CECF959C2C6CEA29005610AB /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,7 @@
 				CE2DE5922C6B9EE7008DE8FB /* EditHabitView.swift */,
 				CE5FAE9B2C2896C50063F30A /* TopBar.swift */,
 				CE2DE5942C6BA206008DE8FB /* HabitRowView.swift */,
+				CECF95972C6CE0D0005610AB /* HabitCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4886CC2C24B63C00FC398E /* FIrebaseService.swift */,
+				CE2DE5982C6BB418008DE8FB /* NotificationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -184,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				CECF45112C1FF0B3000DB293 /* HabitManagerApp.swift */,
+				CECF95992C6CE975005610AB /* ViewModifiers */,
 				CE4886C02C24B44500FC398E /* Views */,
 				CE4886BF2C24B43100FC398E /* ViewModels */,
 				CE4886BE2C24B41100FC398E /* Models */,
@@ -219,6 +230,15 @@
 				CECF45332C1FF0B5000DB293 /* HabitManagerUITestsLaunchTests.swift */,
 			);
 			path = HabitManagerUITests;
+			sourceTree = "<group>";
+		};
+		CECF95992C6CE975005610AB /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				CECF959C2C6CEA29005610AB /* RoundedCorner.swift */,
+				CECF959A2C6CE99B005610AB /* Delete.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,12 +386,16 @@
 				CE4886CD2C24B63C00FC398E /* FIrebaseService.swift in Sources */,
 				CE9EDD462C6A5A4E003FB401 /* UserViewModel.swift in Sources */,
 				CE5FAE9C2C2896C50063F30A /* TopBar.swift in Sources */,
+				CECF959D2C6CEA29005610AB /* RoundedCorner.swift in Sources */,
 				CE9F7E502C6A145A00C46550 /* CreateAccountView.swift in Sources */,
 				CE2DE5972C6BA7E8008DE8FB /* AppViewModel.swift in Sources */,
 				CE9EDD482C6A5A67003FB401 /* User.swift in Sources */,
 				CE2DE5952C6BA206008DE8FB /* HabitRowView.swift in Sources */,
+				CECF959B2C6CE99B005610AB /* Delete.swift in Sources */,
 				CE2DE5932C6B9EE7008DE8FB /* EditHabitView.swift in Sources */,
 				CECF45122C1FF0B3000DB293 /* HabitManagerApp.swift in Sources */,
+				CE2DE5992C6BB418008DE8FB /* NotificationManager.swift in Sources */,
+				CECF95982C6CE0D0005610AB /* HabitCardView.swift in Sources */,
 				CE4886C72C24B5EA00FC398E /* HabitListView.swift in Sources */,
 				CE4886C52C24B5B500FC398E /* LoginView.swift in Sources */,
 				CE4886CB2C24B61C00FC398E /* Habit.swift in Sources */,

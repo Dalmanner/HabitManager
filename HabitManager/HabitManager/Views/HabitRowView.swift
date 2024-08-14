@@ -39,7 +39,7 @@ struct HabitRowView_Previews: PreviewProvider {
         HabitRowView(habit: Habit(
             id: "sampleId",
             title: "Sample Habit",
-            color: "Card-1",
+            color: "",
             weekdays: ["Monday", "Wednesday", "Friday"],
             isReminderOn: true,
             reminderText: "Remember to do this!",

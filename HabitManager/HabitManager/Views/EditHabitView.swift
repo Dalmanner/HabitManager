@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct EditHabitView: View {
     @Environment(\.dismiss) var dismiss

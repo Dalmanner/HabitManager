@@ -10,6 +10,7 @@ import FirebaseAuth
 
 final class AppViewModel: ObservableObject {
     @Published var isSignedIn: Bool = false
+    @Published var notificationManager: NotificationManager = NotificationManager()
     private var authListener: AuthStateDidChangeListenerHandle?
 
     init() {

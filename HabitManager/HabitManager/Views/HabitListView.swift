@@ -20,13 +20,16 @@ struct HabitListView: View {
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    List {
-                        ForEach(viewModel.habits) { habit in
-                            NavigationLink(destination: EditHabitView(habit: habit, viewModel: viewModel)) {
-                                HabitRowView(habit: habit)
+                    ScrollView {
+                        VStack(spacing: 15) {
+                            ForEach(viewModel.habits) { habit in
+                                HabitCardView(habit: Binding.constant(habit)) {
+                                    deleteHabit(habit: habit)
+                                }
                             }
                         }
-                        .onDelete(perform: deleteHabit) // Enable swipe-to-delete
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
                     }
                 }
 
@@ -61,10 +64,9 @@ struct HabitListView: View {
         }
     }
     
-    private func deleteHabit(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let habit = viewModel.habits[index]
-            viewModel.deleteHabit(habit)
-        }
+    private func deleteHabit(habit: Habit) {
+        viewModel.deleteHabit(habit)
     }
 }
+
+
