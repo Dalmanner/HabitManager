@@ -23,11 +23,30 @@ struct EditHabitView: View {
             Form {
                 Section(header: Text("Habit Details")) {
                     TextField("Title", text: $habit.title)
-                    ColorPicker("Color", selection: Binding(get: {
-                        Color(habit.color)
-                    }, set: { newColor in
-                        habit.color = "\(newColor)"
-                    }))
+
+                    // Custom Color Picker
+                    HStack(spacing: 20) {
+                        ForEach(habitColors, id: \.self) { colorName in
+                            Circle()
+                                .fill(Color.fromString(colorName))
+                                .frame(width: 30, height: 30)
+                                .overlay {
+                                    if habit.color == colorName {
+                                        Image(systemName: "checkmark")
+                                            .font(.caption.bold())
+                                            .foregroundColor(.white)
+                                            .shadow(color: .black, radius: 0.5, x: 0.5, y: 0.5)
+                                    }
+                                }
+                                .onTapGesture {
+                                    withAnimation {
+                                        habit.color = colorName
+                                    }
+                                }
+                        }
+                    }
+                    .padding(.vertical)
+
                     Toggle("Reminder", isOn: $habit.isReminderOn)
                     if habit.isReminderOn {
                         DatePicker("Reminder Time", selection: $habit.reminderDate, displayedComponents: .hourAndMinute)
@@ -55,3 +74,16 @@ struct EditHabitView: View {
         }
     }
 }
+
+let habitColors: [String] = [
+    "Card-1", "Card-2", "Card-3", "Card-4", "Card-5", "Card-6", "Card-7"
+]
+
+extension Color {
+    static func fromString(_ string: String) -> Color {
+        return Color(string)
+    }
+}
+
+
+

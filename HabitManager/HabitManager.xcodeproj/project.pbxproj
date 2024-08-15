@@ -37,6 +37,7 @@
 		CECF95982C6CE0D0005610AB /* HabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF95972C6CE0D0005610AB /* HabitCardView.swift */; };
 		CECF959B2C6CE99B005610AB /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF959A2C6CE99B005610AB /* Delete.swift */; };
 		CECF959D2C6CEA29005610AB /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF959C2C6CEA29005610AB /* RoundedCorner.swift */; };
+		CECF959F2C6CFA05005610AB /* MultiSelectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF959E2C6CFA05005610AB /* MultiSelectPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		CECF95972C6CE0D0005610AB /* HabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCardView.swift; sourceTree = "<group>"; };
 		CECF959A2C6CE99B005610AB /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		CECF959C2C6CEA29005610AB /* RoundedCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		CECF959E2C6CFA05005610AB /* MultiSelectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			children = (
 				CECF959C2C6CEA29005610AB /* RoundedCorner.swift */,
 				CECF959A2C6CE99B005610AB /* Delete.swift */,
+				CECF959E2C6CFA05005610AB /* MultiSelectPicker.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				CECF959D2C6CEA29005610AB /* RoundedCorner.swift in Sources */,
 				CE9F7E502C6A145A00C46550 /* CreateAccountView.swift in Sources */,
 				CE2DE5972C6BA7E8008DE8FB /* AppViewModel.swift in Sources */,
+				CECF959F2C6CFA05005610AB /* MultiSelectPicker.swift in Sources */,
 				CE9EDD482C6A5A67003FB401 /* User.swift in Sources */,
 				CE2DE5952C6BA206008DE8FB /* HabitRowView.swift in Sources */,
 				CECF959B2C6CE99B005610AB /* Delete.swift in Sources */,
