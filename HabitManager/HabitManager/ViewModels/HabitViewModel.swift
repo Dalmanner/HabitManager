@@ -100,6 +100,5 @@ final class HabitViewModel: ObservableObject {
 
     func selectHabitForEditing(_ habit: Habit) {
         self.selectedHabit = habit
-        print("Selected habit for editing: \(habit.title)") // Add this for debugging
     }
 }

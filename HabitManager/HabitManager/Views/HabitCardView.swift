@@ -7,15 +7,7 @@
 import SwiftUI
 
 struct HabitCardView: View {
-    @Binding var habit: Habit
-    @State private var isCompletedToday = false
-    @ObservedObject var viewModel: HabitViewModel
-
-    init(habit: Binding<Habit>, viewModel: HabitViewModel) {
-        self._habit = habit
-        self.viewModel = viewModel
-        self._isCompletedToday = State(initialValue: habit.wrappedValue.completedDates.contains { Calendar.current.isDateInToday($0) })
-    }
+    let habit: Habit
 
     var body: some View {
         VStack(spacing: 6) {
@@ -27,33 +19,26 @@ struct HabitCardView: View {
 
                 Spacer()
 
-                VStack(alignment: .trailing) {
-                    Text("Streak: \(habit.streak)")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    
-                    Button(action: toggleCompleted) {
-                        Image(systemName: isCompletedToday ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(isCompletedToday ? .green : .gray)
-                            .imageScale(.large)
-                    }
-                    .buttonStyle(BorderlessButtonStyle()) // Prevents interference with parent gestures
-                }
+                Text("Streak: \(habit.streak)")
+                    .font(.caption)
+                    .foregroundColor(.gray)
             }
             .padding(.horizontal, 10)
-
-            // Displaying Weekdays
-            HStack {
+            
+            HStack(spacing: 8) {
                 ForEach(habit.weekdays, id: \.self) { day in
-                    Text(day.prefix(3)) // Display first three letters of each weekday
+                    Text(day.prefix(2))
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .fontWeight(.bold)
                         .padding(4)
-                        .background(Color(habit.color).opacity(0.3))
-                        .cornerRadius(4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color(habit.color))
+                                .opacity(0.7)
+                        )
                 }
             }
-            .padding(.top, 10)
+            .padding(.top, 5)
         }
         .padding()
         .background(
@@ -63,23 +48,13 @@ struct HabitCardView: View {
         )
         .padding(.horizontal)
         .frame(maxWidth: 600)
-        .contentShape(Rectangle()) // Makes the entire card tappable
-        .onTapGesture {
-            print("Card tapped for habit: \(habit.title)")
-            viewModel.selectHabitForEditing(habit)
-        }
-    }
-
-    private func toggleCompleted() {
-        if isCompletedToday {
-            habit.completedDates.removeAll { Calendar.current.isDateInToday($0) }
-            habit.streak = max(habit.streak - 1, 0)
-        } else {
-            viewModel.markHabitAsDone(&habit)
-        }
-
-        isCompletedToday.toggle()
+        .contentShape(Rectangle())
     }
 }
+
+
+
+
+
 
 

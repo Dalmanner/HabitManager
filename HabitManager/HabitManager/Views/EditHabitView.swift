@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 struct EditHabitView: View {
     @Environment(\.dismiss) var dismiss
@@ -19,7 +18,6 @@ struct EditHabitView: View {
                 Section(header: Text("Habit Details")) {
                     TextField("Title", text: $habit.title)
 
-                    // Custom Color Picker
                     HStack(spacing: 20) {
                         ForEach(habitColors, id: \.self) { colorName in
                             Circle()
@@ -34,9 +32,7 @@ struct EditHabitView: View {
                                     }
                                 }
                                 .onTapGesture {
-                                    withAnimation {
-                                        habit.color = colorName
-                                    }
+                                    habit.color = colorName
                                 }
                         }
                     }
@@ -50,6 +46,16 @@ struct EditHabitView: View {
 
                     MultiSelectPicker(title: "Weekdays", options: Calendar.current.weekdaySymbols, selections: $habit.weekdays)
                 }
+
+                Button("Perform Habit") {
+                    viewModel.markHabitAsDone(&habit)
+                    dismiss()
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                .padding()
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(10)
 
                 Button("Save Changes") {
                     habit.dateUpdated = Date()
@@ -71,6 +77,7 @@ struct EditHabitView: View {
     }
 }
 
+
 let habitColors: [String] = [
     "Card-1", "Card-2", "Card-3", "Card-4", "Card-5", "Card-6", "Card-7"
 ]
@@ -80,3 +87,4 @@ struct EditHabitView_Previews: PreviewProvider {
         EditHabitView(viewModel: HabitViewModel(), habit: .constant(Habit(title: "Exercise", color: "Card-1", weekdays: ["Monday", "Wednesday", "Friday"], isReminderOn: true, reminderText: "Remember to exercise!", reminderDate: Date(), userId: "123", dateCreated: Date(), dateUpdated: Date(), completedDates: [], streak: 0)))
     }
 }
+
