@@ -44,29 +44,55 @@ final class HabitViewModel: ObservableObject {
     }
 
     func addHabit(_ habit: Habit, completion: @escaping (Bool) -> Void) {
-        do {
-            _ = try db.collection("habits").addDocument(from: habit) { error in
+            do {
+                _ = try db.collection("habits").addDocument(from: habit) { error in
+                    if let error = error {
+                        print("Error adding habit: \(error.localizedDescription)")
+                        completion(false)
+                    } else {
+                        // Schedule notification after habit is added successfully
+                        if habit.isReminderOn {
+                            self.scheduleNotification(for: habit)
+                        }
+                        completion(true)
+                    }
+                }
+            } catch {
+                print("Error encoding habit: \(error.localizedDescription)")
+                completion(false)
+            }
+        }
+
+        func updateHabit(_ habit: Habit) {
+            guard let habitId = habit.id else { return }
+            do {
+                try db.collection("habits").document(habitId).setData(from: habit)
+                // Reschedule notification after habit is updated
+                if habit.isReminderOn {
+                    self.scheduleNotification(for: habit)
+                }
+            } catch {
+                print("Error updating habit: \(error.localizedDescription)")
+            }
+        }
+
+        private func scheduleNotification(for habit: Habit) {
+            let content = UNMutableNotificationContent()
+            content.title = habit.title
+            content.body = habit.reminderText
+            content.sound = UNNotificationSound.default
+
+            let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: habit.reminderDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+
+            let request = UNNotificationRequest(identifier: habit.id ?? UUID().uuidString, content: content, trigger: trigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
-                    print("Error adding habit: \(error.localizedDescription)")
-                    completion(false)
-                } else {
-                    completion(true)
+                    print("Error scheduling notification: \(error.localizedDescription)")
                 }
             }
-        } catch {
-            print("Error encoding habit: \(error.localizedDescription)")
-            completion(false)
         }
-    }
-
-    func updateHabit(_ habit: Habit) {
-        guard let habitId = habit.id else { return }
-        do {
-            try db.collection("habits").document(habitId).setData(from: habit)
-        } catch {
-            print("Error updating habit: \(error.localizedDescription)")
-        }
-    }
 
     func deleteHabit(_ habit: Habit) {
         guard let habitId = habit.id else { return }
