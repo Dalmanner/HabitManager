@@ -12,6 +12,5 @@ struct User: Identifiable, Codable {
     @DocumentID var id: String?
     var name: String
     var email: String
-    // Removed password to prevent storing sensitive data in Firestore
 }
 

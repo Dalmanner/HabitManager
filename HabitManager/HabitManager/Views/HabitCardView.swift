@@ -19,6 +19,12 @@ struct HabitCardView: View {
 
                 Spacer()
 
+                if habit.isReminderOn {
+                    Image(systemName: "bell.fill")
+                        .foregroundColor(.yellow)
+                        .imageScale(.medium)
+                }
+
                 Text("Streak: \(habit.streak)")
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -49,6 +55,16 @@ struct HabitCardView: View {
         .padding(.horizontal)
         .frame(maxWidth: 600)
         .contentShape(Rectangle())
+    }
+}
+
+
+//preview:
+struct HabitCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        HabitCardView(habit: Habit(title: "Drink Water", color: "Card-1", weekdays: ["Monday", "Tuesday", "Wednesday"], isReminderOn: true, reminderText: "", reminderDate: Date(), userId: "", dateCreated: Date(), dateUpdated: Date(), completedDates: [], streak: 0))
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
 
