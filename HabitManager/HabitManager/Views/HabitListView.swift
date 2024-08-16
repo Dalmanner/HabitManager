@@ -62,16 +62,19 @@ struct HabitListView: View {
             }
             .sheet(isPresented: $showEditHabitView) {
                 if let selectedHabit = selectedHabit {
-                    // Show EditHabitView if a habit is selected
-                    EditHabitView(viewModel: viewModel, habit: .constant(selectedHabit))
+                    EditHabitView(viewModel: viewModel, habit: Binding(
+                        get: { selectedHabit },
+                        set: { newValue in
+                            self.selectedHabit = newValue
+                        }
+                    ))
                 } else {
-                    // Show AddHabitView if no habit is selected
                     AddHabitView(viewModel: viewModel)
                 }
             }
         }
     }
-
+    
     private func deleteHabit(at offsets: IndexSet) {
         offsets.forEach { index in
             let habit = viewModel.habits[index]
@@ -79,3 +82,7 @@ struct HabitListView: View {
         }
     }
 }
+
+
+
+
