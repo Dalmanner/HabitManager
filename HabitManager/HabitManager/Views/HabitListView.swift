@@ -11,7 +11,7 @@ struct HabitListView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @StateObject private var viewModel = HabitViewModel()
     @State private var showEditHabitView = false
-    @State private var selectedHabit: Habit? = nil
+    @State private var selectedHabit: Habit?
 
     var body: some View {
         NavigationStack {
@@ -62,14 +62,16 @@ struct HabitListView: View {
             }
             .sheet(isPresented: $showEditHabitView) {
                 if let selectedHabit = selectedHabit {
+                    // Show EditHabitView if a habit is selected
                     EditHabitView(viewModel: viewModel, habit: .constant(selectedHabit))
                 } else {
+                    // Show AddHabitView if no habit is selected
                     AddHabitView(viewModel: viewModel)
                 }
             }
         }
     }
-    
+
     private func deleteHabit(at offsets: IndexSet) {
         offsets.forEach { index in
             let habit = viewModel.habits[index]
@@ -77,4 +79,3 @@ struct HabitListView: View {
         }
     }
 }
-
