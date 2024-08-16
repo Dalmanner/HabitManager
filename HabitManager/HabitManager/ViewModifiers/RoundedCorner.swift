@@ -2,7 +2,7 @@
 //  RoundedCorner.swift
 //  HabitTracker
 //
-//  Created by Ali Mert Özhayta on 22.05.2022.
+//  Created by Mac on 2024-08-14.
 //
 
 import SwiftUI

@@ -11,12 +11,7 @@ import UserNotifications
 struct EditHabitView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: HabitViewModel
-    @State private var habit: Habit
-
-    init(habit: Habit, viewModel: HabitViewModel) {
-        _habit = State(initialValue: habit)
-        self.viewModel = viewModel
-    }
+    @Binding var habit: Habit
 
     var body: some View {
         NavigationStack {
@@ -28,7 +23,7 @@ struct EditHabitView: View {
                     HStack(spacing: 20) {
                         ForEach(habitColors, id: \.self) { colorName in
                             Circle()
-                                .fill(Color.fromString(colorName))
+                                .fill(Color(colorName))
                                 .frame(width: 30, height: 30)
                                 .overlay {
                                     if habit.color == colorName {
@@ -52,6 +47,7 @@ struct EditHabitView: View {
                         DatePicker("Reminder Time", selection: $habit.reminderDate, displayedComponents: .hourAndMinute)
                         TextField("Reminder Text", text: $habit.reminderText)
                     }
+
                     MultiSelectPicker(title: "Weekdays", options: Calendar.current.weekdaySymbols, selections: $habit.weekdays)
                 }
 
@@ -79,11 +75,8 @@ let habitColors: [String] = [
     "Card-1", "Card-2", "Card-3", "Card-4", "Card-5", "Card-6", "Card-7"
 ]
 
-extension Color {
-    static func fromString(_ string: String) -> Color {
-        return Color(string)
+struct EditHabitView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditHabitView(viewModel: HabitViewModel(), habit: .constant(Habit(title: "Exercise", color: "Card-1", weekdays: ["Monday", "Wednesday", "Friday"], isReminderOn: true, reminderText: "Remember to exercise!", reminderDate: Date(), userId: "123", dateCreated: Date(), dateUpdated: Date(), completedDates: [], streak: 0)))
     }
 }
-
-
-

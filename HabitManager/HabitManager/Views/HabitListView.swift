@@ -10,7 +10,8 @@ import SwiftUI
 struct HabitListView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @StateObject private var viewModel = HabitViewModel()
-    @State private var showAddHabitView = false
+    @State private var showEditHabitView = false
+    @State private var selectedHabitIndex: Int? = nil
 
     var body: some View {
         NavigationStack {
@@ -22,10 +23,15 @@ struct HabitListView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: 15) {
-                            ForEach(viewModel.habits) { habit in
-                                HabitCardView(habit: Binding.constant(habit)) {
-                                    deleteHabit(habit: habit)
-                                }
+                            ForEach(viewModel.habits.indices, id: \.self) { index in
+                                HabitCardView(habit: $viewModel.habits[index], viewModel: viewModel)
+                                    .onTapGesture {
+                                        selectedHabitIndex = index
+                                        showEditHabitView.toggle()
+                                    }
+                                    .onDelete {
+                                        viewModel.deleteHabit(viewModel.habits[index])
+                                    }
                             }
                         }
                         .padding(.horizontal)
@@ -36,7 +42,8 @@ struct HabitListView: View {
                 Spacer()
 
                 Button(action: {
-                    showAddHabitView = true
+                    selectedHabitIndex = nil
+                    showEditHabitView.toggle()
                 }) {
                     Text("Add New Habit")
                         .font(.headline)
@@ -58,15 +65,17 @@ struct HabitListView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showAddHabitView) {
-                AddHabitView(viewModel: viewModel)
+            .sheet(isPresented: $showEditHabitView) {
+                if let index = selectedHabitIndex {
+                    let bindingHabit = $viewModel.habits[index]
+                    EditHabitView(viewModel: viewModel, habit: bindingHabit)
+                } else {
+                    AddHabitView(viewModel: viewModel)
+                }
             }
         }
     }
-    
-    private func deleteHabit(habit: Habit) {
-        viewModel.deleteHabit(habit)
-    }
 }
+
 
 

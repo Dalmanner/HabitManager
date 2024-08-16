@@ -12,7 +12,7 @@ struct AddHabitView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: HabitViewModel
     @State private var title = ""
-    @State private var color = ""
+    @State private var color = "Card-1"
     @State private var weekdays: [String] = []
     @State private var isReminderOn = false
     @State private var reminderText = ""
@@ -26,9 +26,9 @@ struct AddHabitView: View {
 
                     // Custom Color Picker
                     HStack(spacing: 20) {
-                        ForEach(habitColors, id: \.self) { colorName in
+                        ForEach(["Card-1", "Card-2", "Card-3", "Card-4", "Card-5", "Card-6", "Card-7"], id: \.self) { colorName in
                             Circle()
-                                .fill(Color.fromString(colorName))
+                                .fill(Color(colorName))
                                 .frame(width: 30, height: 30)
                                 .overlay {
                                     if color == colorName {
@@ -53,6 +53,8 @@ struct AddHabitView: View {
                         DatePicker("Reminder Time", selection: $reminderDate, displayedComponents: .hourAndMinute)
                         TextField("Reminder Text", text: $reminderText)
                     }
+
+                    // Weekdays Picker
                     MultiSelectPicker(title: "Weekdays", options: Calendar.current.weekdaySymbols, selections: $weekdays)
                 }
 
@@ -68,7 +70,10 @@ struct AddHabitView: View {
                         reminderDate: reminderDate,
                         userId: userId,
                         dateCreated: Date(),
-                        dateUpdated: Date()
+                        dateUpdated: Date(),
+                        completedDates: [],  // Initialize with an empty array
+                        streak: 0,  // Initialize streak to 0
+                        lastCompletedDate: nil  // No completed date initially
                     )
                     viewModel.addHabit(newHabit) { success in
                         if success {

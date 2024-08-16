@@ -36,19 +36,7 @@ struct HabitRowView: View {
 
 struct HabitRowView_Previews: PreviewProvider {
     static var previews: some View {
-        HabitRowView(habit: Habit(
-            id: "sampleId",
-            title: "Sample Habit",
-            color: "",
-            weekdays: ["Monday", "Wednesday", "Friday"],
-            isReminderOn: true,
-            reminderText: "Remember to do this!",
-            reminderDate: Date(),
-            userId: "sampleUserId",
-            dateCreated: Date(),
-            dateUpdated: Date()
-        ))
-        .previewLayout(.sizeThatFits)
+        HabitRowView(habit: Habit.init(title: "Exercise", color: "Red", weekdays: ["Monday", "Wednesday", "Friday"], isReminderOn: true, reminderText: "Remember to exercise!", reminderDate: Date(), userId: "123", dateCreated: Date(), dateUpdated: Date(), completedDates: [], streak: 0))
     }
 }
 

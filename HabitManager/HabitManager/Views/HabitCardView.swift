@@ -8,8 +8,14 @@ import SwiftUI
 
 struct HabitCardView: View {
     @Binding var habit: Habit
-    @State private var editHabit = false
-    let onDelete: () -> Void
+    @State private var isCompletedToday = false
+    @ObservedObject var viewModel: HabitViewModel
+
+    init(habit: Binding<Habit>, viewModel: HabitViewModel) {
+        self._habit = habit
+        self.viewModel = viewModel
+        self._isCompletedToday = State(initialValue: habit.wrappedValue.completedDates.contains { Calendar.current.isDateInToday($0) })
+    }
 
     var body: some View {
         VStack(spacing: 6) {
@@ -19,85 +25,61 @@ struct HabitCardView: View {
                     .fontWeight(.semibold)
                     .lineLimit(1)
 
-                if habit.isReminderOn {
-                    Image(systemName: "bell.badge.fill")
-                        .font(.callout)
-                        .foregroundColor(Color(habit.color))
-                        .scaleEffect(0.8)
-                        .offset(x: -3, y: -3)
-                        .shadow(color: .black, radius: 0.1, x: 0.1, y: -0.1)
-                }
-
                 Spacer()
 
-                let count = habit.weekdays.count
-                Text(count == 7 ? "Everyday" : "\(count) times a week")
-                    .font(.caption)
-                    .foregroundColor(.gray)
+                VStack(alignment: .trailing) {
+                    Text("Streak: \(habit.streak)")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    
+                    Button(action: toggleCompleted) {
+                        Image(systemName: isCompletedToday ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(isCompletedToday ? .green : .gray)
+                            .imageScale(.large)
+                    }
+                    .buttonStyle(BorderlessButtonStyle()) // Prevents interference with parent gestures
+                }
             }
             .padding(.horizontal, 10)
 
-            let activePlot = getActivePlot()
-
+            // Displaying Weekdays
             HStack {
-                ForEach(activePlot.indices, id: \.self) { index in
-                    let item = activePlot[index]
-
-                    VStack(spacing: 6) {
-                        Text(item.dayName.prefix(3))
-                            .font(.caption)
-                            .foregroundColor(.gray)
-
-                        let status = habit.weekdays.contains(item.dayName)
-
-                        Text(formatDate(date: item.date))
-                            .font(.system(size: 14))
-                            .fontWeight(.semibold)
-                            .shadow(color: Color(.systemBackground), radius: 0.4, x: 0.3, y: 0.3)
-                            .padding(8)
-                            .background {
-                                Circle()
-                                    .fill(Color(habit.color))
-                                    .opacity(status ? 1 : 0)
-                            }
-                    }
+                ForEach(habit.weekdays, id: \.self) { day in
+                    Text(day.prefix(3)) // Display first three letters of each weekday
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                        .padding(4)
+                        .background(Color(habit.color).opacity(0.3))
+                        .cornerRadius(4)
                 }
             }
-            .padding(.top, 15)
+            .padding(.top, 10)
         }
         .padding()
-        .background(Color("TFBG").opacity(0.35), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(habit.color))
+                .opacity(0.35)
+        )
         .padding(.horizontal)
         .frame(maxWidth: 600)
+        .contentShape(Rectangle()) // Makes the entire card tappable
         .onTapGesture {
-            editHabit.toggle()
-        }
-        .sheet(isPresented: $editHabit) {
-            EditHabitView(habit: habit, viewModel: HabitViewModel())
-        }
-        .modifier(Delete(action: onDelete))
-    }
-
-    private func getActivePlot() -> [(dayName: String, date: Date)] {
-        let calendar = Calendar.current
-        let currentWeek = calendar.dateInterval(of: .weekOfMonth, for: Date())
-        let weekdaySymbols = calendar.weekdaySymbols
-        let startDate = currentWeek?.start ?? Date()
-
-        return weekdaySymbols.indices.compactMap { index -> (String, Date)? in
-            guard let currentDate = calendar.date(byAdding: .day, value: index, to: startDate) else {
-                return nil
-            }
-            return (weekdaySymbols[index], currentDate)
+            print("Card tapped for habit: \(habit.title)")
+            viewModel.selectHabitForEditing(habit)
         }
     }
 
-    private func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd"
-        return formatter.string(from: date)
+    private func toggleCompleted() {
+        if isCompletedToday {
+            habit.completedDates.removeAll { Calendar.current.isDateInToday($0) }
+            habit.streak = max(habit.streak - 1, 0)
+        } else {
+            viewModel.markHabitAsDone(&habit)
+        }
+
+        isCompletedToday.toggle()
     }
 }
-
 
 

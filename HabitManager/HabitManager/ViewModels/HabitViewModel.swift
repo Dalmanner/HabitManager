@@ -11,11 +11,8 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 
 final class HabitViewModel: ObservableObject {
-    @Published var habits: [Habit] = [] {
-        didSet {
-            print("Habits updated in ViewModel: \(habits.count) habits")
-        }
-    }
+    @Published var habits: [Habit] = []
+    @Published var selectedHabit: Habit?
 
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
@@ -43,9 +40,6 @@ final class HabitViewModel: ObservableObject {
                 self.habits = querySnapshot?.documents.compactMap { document in
                     try? document.data(as: Habit.self)
                 } ?? []
-                
-                // Debugging logs
-                print("Habits updated: \(self.habits.map { $0.title })")
             }
     }
 
@@ -81,5 +75,31 @@ final class HabitViewModel: ObservableObject {
                 print("Error deleting habit: \(error.localizedDescription)")
             }
         }
+    }
+
+    func markHabitAsDone(_ habit: inout Habit) {
+        let today = Calendar.current.startOfDay(for: Date())
+        
+        if let lastCompletedDate = habit.lastCompletedDate {
+            let difference = Calendar.current.dateComponents([.day], from: lastCompletedDate, to: today).day ?? 0
+
+            if difference == 1 {
+                habit.streak += 1
+            } else if difference > 1 {
+                habit.streak = 1 // Reset the streak
+            }
+        } else {
+            habit.streak = 1 // Start the streak
+        }
+
+        habit.lastCompletedDate = today
+        habit.completedDates.append(today)
+
+        updateHabit(habit)
+    }
+
+    func selectHabitForEditing(_ habit: Habit) {
+        self.selectedHabit = habit
+        print("Selected habit for editing: \(habit.title)") // Add this for debugging
     }
 }
